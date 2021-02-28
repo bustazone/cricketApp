@@ -1,27 +1,38 @@
 {
-  "name": "cricketApp",
+  "name": "cricket_app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "start:clean": "npm start -- --reset-cache",
     "test": "jest",
-    "lint": "eslint ."
+    "build": "npm i && cd ios/ && pod install",
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx --quiet",
+    "lint-fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "prettier": "npx prettier --check \"{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "prettier-fix": "npx prettier --write \"{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "tsc": "npx tsc -p ."
   },
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
-    "@react-native-community/eslint-config": "^1.1.0",
-    "babel-jest": "^25.1.0",
-    "eslint": "^6.5.1",
-    "jest": "^25.1.0",
-    "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "@babel/core": "^7.13.8",
+    "@babel/runtime": "^7.13.8",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.21.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.65.1",
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
+    "react-test-renderer": "16.14.0",
+    "typescript": "^4.1.5"
   },
   "jest": {
     "preset": "react-native"
