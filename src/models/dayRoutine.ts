@@ -1,4 +1,4 @@
-enum DayOfTheWeek {
+export enum DayOfTheWeek {
   L = 'L',
   M = 'M',
   X = 'X',
@@ -10,7 +10,7 @@ enum DayOfTheWeek {
 export type DayRoutine = {
   name: string
   color: string
-  day: DayOfTheWeek
+  day: DayOfTheWeek[]
   tasks: Task[]
 }
 
@@ -29,10 +29,10 @@ export type ActiveTask = {
 }
 
 export type ActiveWeek = {
-  alerts_actived: boolean
+  actived: boolean
   notifs_actived: boolean
   sound_actived: boolean
-  sound: string
+  sound: string | undefined
   ActiveTasks: { [key in keyof typeof DayOfTheWeek]: ActiveTask[] }
   routines: DayRoutine[]
 }
