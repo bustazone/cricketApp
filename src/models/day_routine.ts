@@ -8,6 +8,7 @@ export enum DayOfTheWeek {
   D = 'D',
 }
 export type DayRoutine = {
+  oneTimed?: boolean
   name: string
   color: string
   day: DayOfTheWeek[]

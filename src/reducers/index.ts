@@ -1,4 +1,4 @@
-import { ActiveWeek, DayOfTheWeek } from 'models/dayRoutine'
+import { ActiveWeek, DayOfTheWeek } from 'models/day_routine'
 import storage from '@react-native-async-storage/async-storage'
 import { persistReducer } from 'redux-persist'
 import { mainColors } from 'styles/colors'
@@ -21,6 +21,7 @@ const initialState: RootState = {
   sound: undefined, // TODO sonido predefinido
   routines: [
     {
+      oneTimed: true,
       color: mainColors.grey,
       day: [
         DayOfTheWeek.L,
