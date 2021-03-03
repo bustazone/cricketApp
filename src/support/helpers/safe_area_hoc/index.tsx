@@ -1,6 +1,6 @@
 import React, { ComponentType, FunctionComponent } from 'react'
 import { SafeAreaView, View } from 'react-native'
-import styles from './index.Styles'
+import styles from './index.styles'
 
 type ThingsProps = {
   color: string

@@ -1,10 +1,13 @@
 import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
+import * as Navigator from 'support/navigation/service'
 
 const HomeView = () => {
   return (
     <View>
-      <Text onPress={() => {}}>ACTIVE</Text>
+      <Text onPress={() => {
+          Navigator.goToRoutine('')
+      }}>ACTIVE</Text>
       <ScrollView>
         <Text />
       </ScrollView>
