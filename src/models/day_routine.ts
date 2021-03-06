@@ -1,3 +1,5 @@
+export const defaultDateFormat = 'YYYY-MM-DD'
+
 export enum DayOfTheWeek {
   L = 'L',
   M = 'M',
@@ -7,7 +9,8 @@ export enum DayOfTheWeek {
   S = 'S',
   D = 'D',
 }
-export type DayRoutine = {
+export type Routine = {
+  id: string
   oneTimed?: boolean
   name: string
   color: string
@@ -34,6 +37,6 @@ export type ActiveWeek = {
   notifs_actived: boolean
   sound_actived: boolean
   sound: string | undefined
-  ActiveTasks: { [key in keyof typeof DayOfTheWeek]: ActiveTask[] }
-  routines: DayRoutine[]
+  ActiveTasksByDay: { date: Date; activeTasks: ActiveTask[] }
+  routines: Routine[]
 }

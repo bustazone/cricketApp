@@ -48,7 +48,6 @@ const rootReducer = (state: RootState = initialState, action: any) => {
 const persistRootConfig = {
   key: 'rootAuth',
   storage,
-  whitelist: ['token_credentials'],
 }
 
 const persistRootReducer = persistReducer<RootState>(persistRootConfig, rootReducer)
