@@ -1,13 +1,23 @@
 export const defaultDateFormat = 'YYYY-MM-DD'
 
+// export enum DayOfTheWeek {
+//   D = 'D',
+//   L = 'L',
+//   M = 'M',
+//   X = 'X',
+//   J = 'J',
+//   V = 'V',
+//   S = 'S',
+// }
+
 export enum DayOfTheWeek {
-  L = 'L',
-  M = 'M',
-  X = 'X',
-  J = 'J',
-  V = 'V',
-  S = 'S',
-  D = 'D',
+  D,
+  L,
+  M,
+  X,
+  J,
+  V,
+  S,
 }
 export type Routine = {
   id: string
@@ -22,7 +32,7 @@ export type Task = {
   name: string
   notes: string
   hourStart: Date
-  hourEnd: Date
+  durationMinutes: number
   message: string
 }
 
@@ -37,6 +47,6 @@ export type ActiveWeek = {
   notifs_actived: boolean
   sound_actived: boolean
   sound: string | undefined
-  ActiveTasksByDay: { date: Date; activeTasks: ActiveTask[] }
+  ActiveTasks: { date: Date; activeTasks: ActiveTask[] }[]
   routines: Routine[]
 }
