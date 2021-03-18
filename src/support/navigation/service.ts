@@ -20,11 +20,11 @@ export function goToHome(): any {
   navigateTo(ROUTE.HOME)
 }
 
-export function goToRoutine(routineId: string): any {
+export function goToRoutine(routineId?: string): any {
   navigateTo(ROUTE.ROUTINE, { routineId: routineId })
 }
 
-export function goToTask(taskId: string): any {
+export function goToTask(taskId?: string): any {
   navigateTo(ROUTE.TASK, { taskId: taskId })
 }
 

@@ -1,4 +1,4 @@
-import { ActiveWeek, DayOfTheWeek } from 'models/day_routine'
+import { ActiveWeek, DaysOfTheWeekEnum } from 'models/day_routine'
 import storage from '@react-native-async-storage/async-storage'
 import { persistReducer } from 'redux-persist'
 import { mainColors } from 'styles/colors'
@@ -29,13 +29,13 @@ const initialState: RootState = {
       id: Math.random().toString(),
       color: mainColors.grey,
       days: [
-        DayOfTheWeek.L,
-        DayOfTheWeek.M,
-        DayOfTheWeek.X,
-        DayOfTheWeek.J,
-        DayOfTheWeek.V,
-        DayOfTheWeek.S,
-        DayOfTheWeek.D,
+        DaysOfTheWeekEnum.L,
+        DaysOfTheWeekEnum.M,
+        DaysOfTheWeekEnum.X,
+        DaysOfTheWeekEnum.J,
+        DaysOfTheWeekEnum.V,
+        DaysOfTheWeekEnum.S,
+        DaysOfTheWeekEnum.D,
       ],
       name: 'CustomTasks',
       tasks: [],

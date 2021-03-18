@@ -4,6 +4,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { RootState } from 'reducers'
 import { TasksViewEventProps, TasksViewInputProps } from 'pages/home/components/tasks/view.types'
 import { TasksViewOwnProps } from 'pages/home/components/tasks/index.types'
+import * as Navigate from 'support/navigation/service'
 
 const mapStateToProps: MapStateToProps<TasksViewInputProps, TasksViewOwnProps, RootState> = (
   state,
@@ -19,7 +20,9 @@ const mapDipatchToProps: MapDispatchToPropsFunction<TasksViewEventProps, TasksVi
   _dispatch: ThunkDispatch<any, any, any>,
   _ownProps: TasksViewOwnProps,
 ): TasksViewEventProps => ({
-  newRoutine: () => {},
+  newRoutine: () => {
+    Navigate.goToRoutine()
+  },
   newRecurringTask: () => {},
   newTemporizerTasks: () => {},
   newUniqueTasks: () => {},

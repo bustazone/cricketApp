@@ -1,9 +1,8 @@
 import { StyleProp, ViewStyle } from 'react-native'
-import { ActiveTask, DayOfTheWeek } from 'models/day_routine'
+import { ActiveTask, DaysOfTheWeekEnum } from 'models/day_routine'
 
 export type CalendarGridPropsType = {
-  type: 'day' | 'week'
-  day?: DayOfTheWeek
+  day?: DaysOfTheWeekEnum
   tasks: ActiveTask[]
   style?: StyleProp<ViewStyle>
 }

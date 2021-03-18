@@ -1,5 +1,16 @@
 export const defaultDateFormat = 'YYYY-MM-DD'
 
+export enum DaysOfTheWeekEnum {
+  D,
+  L,
+  M,
+  X,
+  J,
+  V,
+  S,
+}
+export const DaysOfTheWeek = Object.keys(DaysOfTheWeekEnum).filter(x => !(parseInt(x) >= 0))
+
 // export enum DayOfTheWeek {
 //   D = 'D',
 //   L = 'L',
@@ -10,17 +21,7 @@ export const defaultDateFormat = 'YYYY-MM-DD'
 //   S = 'S',
 // }
 
-export enum DayOfTheWeek {
-  D = 'D',
-  L = 'L',
-  M = 'M',
-  X = 'X',
-  J = 'J',
-  V = 'V',
-  S = 'S',
-}
-
-export const DayOfTheWeekArray = Object.values(DayOfTheWeek).reduce<string[]>((arr, key) => {
+export const DayOfTheWeekArray = Object.values(DaysOfTheWeekEnum).reduce<string[]>((arr, key) => {
   if (typeof key === 'string') {
     arr.push(key)
   }
@@ -31,7 +32,7 @@ export type Routine = {
   id: string
   name: string
   color: string
-  days: DayOfTheWeek[]
+  days: DaysOfTheWeekEnum[]
   tasks: RoutineTask[]
 }
 

@@ -1,30 +1,33 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useMemo, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 import Svg, { Line, G, Text } from 'react-native-svg'
 import { W } from 'utils/screen_dimensions'
 import { CalendarGridPropsType } from './index.type'
-import { DayOfTheWeek } from 'models/day_routine'
 import CalendarTask from './components/calendar_task'
 import CalendarCurrent from './components/calendar_current'
+import { getTabsOrdered } from 'pages/home/utils'
+import { DaysOfTheWeekEnum } from 'models/day_routine'
 
 const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
-  type,
   day,
   tasks,
   style,
 }: CalendarGridPropsType) => {
   const [YPos, setYPos] = useState<number>(0)
+  const tabsOrdered: string[] = useMemo(() => {
+    return getTabsOrdered()
+  }, [])
   return (
     <View style={style}>
-      {type === 'week' ? (
+      {day === undefined ? (
         <Svg style={{ height: (W / 300) * 30, width: W }} viewBox="0 0 300 30">
-          {Object.keys(DayOfTheWeek).map((it, index) => {
+          {tabsOrdered.map((it, index) => {
             return (
               <Text
                 key={Math.random()}
                 fill="black"
                 fontSize="20"
-                x={24 + (index + 0.5) * ((300 - 48) / Object.keys(DayOfTheWeek).length)}
+                x={24 + (index + 0.5) * ((300 - 48) / tabsOrdered.length)}
                 y={15}
                 textAnchor="middle"
                 alignmentBaseline="central">
@@ -42,14 +45,14 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
             y={15}
             textAnchor="middle"
             alignmentBaseline="central">
-            {day ? day.valueOf() : ''}
+            {DaysOfTheWeekEnum[day]}
           </Text>
         </Svg>
       )}
       <ScrollView style={{ flex: 1 }} bounces={false} contentOffset={{ x: 0, y: YPos }}>
         <Svg style={{ height: (W / 300) * 730, width: W }} viewBox="0 0 300 730">
           {[...Array(8).keys()].map(it => {
-            if (type === 'week' || it === 0 || it === 7)
+            if (day === undefined || it === 0 || it === 7)
               return (
                 <Line
                   key={Math.random()}
@@ -64,7 +67,6 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
                 />
               )
           })}
-
           {[...Array(25).keys()].map(it => {
             return (
               <G key={Math.random()}>
@@ -100,7 +102,18 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
             )
           })}
           {tasks.map(task => {
-            return <CalendarTask key={Math.random()} type={type} task={task} />
+            const column = tabsOrdered.indexOf(
+              DaysOfTheWeekEnum[new Date(task.referenced_task.hourStart).getDay()],
+            )
+            return (
+              <CalendarTask
+                key={Math.random()}
+                type={day === undefined ? 'week' : 'day'}
+                task={task}
+                totalColumsCount={day === undefined ? 7 : 1}
+                currentColumn={column < 0 ? 0 : column}
+              />
+            )
           })}
           <CalendarCurrent scrollYPos={setYPos} />
         </Svg>

@@ -1,22 +1,31 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import CalendarGrid from './components/calendar_grid'
-import { DayOfTheWeek } from 'models/day_routine'
+import { ActiveTask, DaysOfTheWeekEnum } from 'models/day_routine'
 import ActionModules from './components/actions_modules'
 import { HomeViewProps } from 'pages/home/view.types'
-
-const Color2: { [idx: string]: string } = DayOfTheWeek
+import { getTabsOrdered } from 'pages/home/utils'
 
 const HomeView: FunctionComponent<HomeViewProps> = props => {
-  const Tabs: string[] = ['ALL', ...Object.keys(Color2)]
-  const [tab, setTab] = React.useState<DayOfTheWeek | undefined>(undefined)
-  const [nowYPos, setNowYPos] = React.useState<number>(0)
+  const Tabs: string[] = useMemo(() => {
+    return ['ALL', ...getTabsOrdered()]
+  }, [])
+  const [tab, setTab] = React.useState<DaysOfTheWeekEnum | undefined>(undefined)
+  const activeTasks: ActiveTask[] = useMemo(() => {
+    if (tab !== undefined) {
+      return props.activeTasks.filter(it => {
+        return new Date(it.referenced_task.hourStart).getDay() === tab.valueOf()
+      })
+    } else {
+      return props.activeTasks
+    }
+  }, [tab, props.activeTasks])
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         {Tabs.map(it => {
-          const tabLabel: DayOfTheWeek | undefined =
-            it === 'ALL' ? undefined : (DayOfTheWeek as any)[it]
+          const tabLabel: DaysOfTheWeekEnum | undefined =
+            it === 'ALL' ? undefined : (DaysOfTheWeekEnum as any)[it]
           return (
             <TouchableOpacity
               key={it}
@@ -41,12 +50,7 @@ const HomeView: FunctionComponent<HomeViewProps> = props => {
           )
         })}
       </View>
-      <CalendarGrid
-        style={{ flex: 1, marginBottom: 50 }}
-        type={tab ? 'day' : 'week'}
-        day={tab}
-        tasks={props.activeTasks}
-      />
+      <CalendarGrid style={{ flex: 1, marginBottom: 50 }} day={tab} tasks={activeTasks} />
       <ActionModules />
     </View>
   )
