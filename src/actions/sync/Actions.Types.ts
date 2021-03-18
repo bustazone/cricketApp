@@ -1,5 +1,5 @@
 import { SAVE_ROUTINE, SAVE_TASK } from './ActionConstants'
-import { Routine, Task } from 'models/day_routine'
+import { Routine, RoutineTask } from 'models/day_routine'
 
 export interface SaveRoutineActionInterface {
   type: typeof SAVE_ROUTINE
@@ -9,5 +9,5 @@ export interface SaveRoutineActionInterface {
 export interface SaveTaskActionInterface {
   type: typeof SAVE_TASK
   routineId: string
-  task: Task
+  task: RoutineTask
 }

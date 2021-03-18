@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { ScrollView, View } from 'react-native'
 import Svg, { Line, G, Text } from 'react-native-svg'
 import { W } from 'utils/screen_dimensions'
-import { CalendarGridPropsType } from 'components/calendar_grid/index.type'
+import { CalendarGridPropsType } from './index.type'
 import { DayOfTheWeek } from 'models/day_routine'
-import CalendarTask from 'components/calendar_grid/components/calendar_task'
-import CalendarCurrent from 'components/calendar_grid/components/calendar_current'
+import CalendarTask from './components/calendar_task'
+import CalendarCurrent from './components/calendar_current'
 
 const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
   type,
@@ -13,23 +13,18 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
   tasks,
   style,
 }: CalendarGridPropsType) => {
-  const daysOfWeek = Object.values(DayOfTheWeek).reduce<string[]>((arr, key) => {
-    if (typeof key === 'string') {
-      arr.push(key)
-    }
-    return arr
-  }, [])
+  const [YPos, setYPos] = useState<number>(0)
   return (
     <View style={style}>
       {type === 'week' ? (
         <Svg style={{ height: (W / 300) * 30, width: W }} viewBox="0 0 300 30">
-          {daysOfWeek.map((it, index) => {
+          {Object.keys(DayOfTheWeek).map((it, index) => {
             return (
               <Text
                 key={Math.random()}
                 fill="black"
                 fontSize="20"
-                x={24 + (index + 0.5) * ((300 - 48) / daysOfWeek.length)}
+                x={24 + (index + 0.5) * ((300 - 48) / Object.keys(DayOfTheWeek).length)}
                 y={15}
                 textAnchor="middle"
                 alignmentBaseline="central">
@@ -47,11 +42,11 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
             y={15}
             textAnchor="middle"
             alignmentBaseline="central">
-            {day}
+            {day ? day.valueOf() : ''}
           </Text>
         </Svg>
       )}
-      <ScrollView style={{ flex: 1 }} bounces={false}>
+      <ScrollView style={{ flex: 1 }} bounces={false} contentOffset={{ x: 0, y: YPos }}>
         <Svg style={{ height: (W / 300) * 730, width: W }} viewBox="0 0 300 730">
           {[...Array(8).keys()].map(it => {
             if (type === 'week' || it === 0 || it === 7)
@@ -107,7 +102,7 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
           {tasks.map(task => {
             return <CalendarTask key={Math.random()} type={type} task={task} />
           })}
-          <CalendarCurrent />
+          <CalendarCurrent scrollYPos={setYPos} />
         </Svg>
       </ScrollView>
     </View>

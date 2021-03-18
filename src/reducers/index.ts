@@ -6,7 +6,20 @@ import { mainColors } from 'styles/colors'
 export type RootState = ActiveWeek
 
 const initialState: RootState = {
-  ActiveTasks: [],
+  ActiveTasks: [
+    {
+      type: 'routine',
+      referenced_task: {
+        name: 'asdfwew',
+        durationMinutes: 130,
+        hourStart: new Date().toISOString(),
+        message: 'asfvvs',
+        notes: 'kjndskjnsd',
+        routineId: '1',
+      },
+      dateAlarm: new Date().toISOString(),
+    },
+  ],
   actived: true,
   notifs_actived: true,
   sound_actived: true,
@@ -14,9 +27,8 @@ const initialState: RootState = {
   routines: [
     {
       id: Math.random().toString(),
-      oneTimed: true,
       color: mainColors.grey,
-      day: [
+      days: [
         DayOfTheWeek.L,
         DayOfTheWeek.M,
         DayOfTheWeek.X,

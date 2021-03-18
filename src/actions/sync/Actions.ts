@@ -1,6 +1,6 @@
 import { SAVE_ROUTINE, SAVE_TASK } from './ActionConstants'
 import { SaveRoutineActionInterface, SaveTaskActionInterface } from './Actions.Types'
-import { Routine, Task } from 'models/day_routine'
+import { Routine, RoutineTask } from 'models/day_routine'
 
 export function saveRoutine(routine: Routine): SaveRoutineActionInterface {
   return {
@@ -9,7 +9,7 @@ export function saveRoutine(routine: Routine): SaveRoutineActionInterface {
   }
 }
 
-export function saveTask(routineId: string, task: Task): SaveTaskActionInterface {
+export function saveTask(routineId: string, task: RoutineTask): SaveTaskActionInterface {
   return {
     type: SAVE_TASK,
     routineId: routineId,

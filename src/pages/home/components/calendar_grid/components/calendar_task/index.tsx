@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { Text as Txt } from 'react-native'
 import { G, Rect, Text, ForeignObject } from 'react-native-svg'
-import { CalendarTaskPropsType } from 'components/calendar_grid/components/calendar_task/index.type'
+import { CalendarTaskPropsType } from 'pages/home/components/calendar_grid/components/calendar_task/index.type'
 
 const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
   type,
@@ -11,11 +11,11 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
     return (
       <G>
         <Rect
-          x={24 + ((300 - 48) / 7) * task.referenced_task.hourStart.getDay()}
+          x={24 + ((300 - 48) / 7) * new Date(task.referenced_task.hourStart).getDay()}
           y={
             5 +
-            task.referenced_task.hourStart.getHours() * 30 +
-            (30 / 60) * task.referenced_task.hourStart.getMinutes()
+            new Date(task.referenced_task.hourStart).getHours() * 30 +
+            (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes()
           }
           width={(300 - 48) / 7}
           height={(30 / 60) * task.referenced_task.durationMinutes}
@@ -24,11 +24,11 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
           fill="#87687590"
         />
         <ForeignObject
-          x={24 + ((300 - 48) / 7) * task.referenced_task.hourStart.getDay()}
+          x={24 + ((300 - 48) / 7) * new Date(task.referenced_task.hourStart).getDay()}
           y={
             5 +
-            task.referenced_task.hourStart.getHours() * 30 +
-            (30 / 60) * task.referenced_task.hourStart.getMinutes()
+            new Date(task.referenced_task.hourStart).getHours() * 30 +
+            (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes()
           }
           width={(300 - 48) / 7}
           height={(30 / 60) * task.referenced_task.durationMinutes}>
@@ -53,8 +53,8 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
           x={24}
           y={
             5 +
-            task.referenced_task.hourStart.getHours() * 30 +
-            (30 / 60) * task.referenced_task.hourStart.getMinutes()
+            new Date(task.referenced_task.hourStart).getHours() * 30 +
+            (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes()
           }
           width="252"
           height={(30 / 60) * task.referenced_task.durationMinutes}
@@ -68,8 +68,8 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
           x="150"
           y={
             5 +
-            task.referenced_task.hourStart.getHours() * 30 +
-            (30 / 60) * task.referenced_task.hourStart.getMinutes() +
+            new Date(task.referenced_task.hourStart).getHours() * 30 +
+            (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes() +
             (30 / 60) * (task.referenced_task.durationMinutes / 2)
           }
           textAnchor="middle"
