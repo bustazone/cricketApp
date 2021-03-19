@@ -14,12 +14,15 @@ const HomeView: FunctionComponent<HomeViewProps> = props => {
   const activeTasks: ActiveTask[] = useMemo(() => {
     if (tab !== undefined) {
       return props.activeTasks.filter(it => {
-        return new Date(it.referenced_task.hourStart).getDay() === tab.valueOf()
+        return (
+          new Date(props.tasks.find(i => it.referenced_task === i.id)!.hourStart).getDay() ===
+          tab.valueOf()
+        )
       })
     } else {
       return props.activeTasks
     }
-  }, [tab, props.activeTasks])
+  }, [tab, props.activeTasks, props.tasks])
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -50,7 +53,12 @@ const HomeView: FunctionComponent<HomeViewProps> = props => {
           )
         })}
       </View>
-      <CalendarGrid style={{ flex: 1, marginBottom: 50 }} day={tab} tasks={activeTasks} />
+      <CalendarGrid
+        style={{ flex: 1, marginBottom: 50 }}
+        day={tab}
+        activedTasks={activeTasks}
+        tasks={props.tasks}
+      />
       <ActionModules />
     </View>
   )

@@ -5,12 +5,12 @@ import Svg, { Path } from 'react-native-svg'
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import SettingsComponent from 'pages/home/components/settings'
 import TasksComponent from 'pages/home/components/tasks'
-import {ActionModulesPropsType} from "pages/home/components/actions_modules/index.type";
+import { ActionModulesPropsType } from 'pages/home/components/actions_modules/index.type'
 
 const animationOptions = { damping: 15, stiffness: 300 }
 let firstInteractionYPosition: number = 0
 let lastInteractionYPosition: number = 0
-const ActionModules = (props: ActionModulesPropsType) => {
+const ActionModules = (_props: ActionModulesPropsType) => {
   const [height, setHeight] = useState<number>(0)
   const [outPanel, setOutPanel] = useState<boolean>(false)
   const [globalBoxNone, setGlobalBoxNone] = useState<boolean>(true)

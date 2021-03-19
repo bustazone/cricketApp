@@ -14,11 +14,11 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
         x={24 + ((300 - 48) / totalColumsCount) * currentColumn}
         y={
           5 +
-          new Date(task.referenced_task.hourStart).getHours() * 30 +
-          (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes()
+          new Date(task.hourStart).getHours() * 30 +
+          (30 / 60) * new Date(task.hourStart).getMinutes()
         }
         width={(300 - 48) / totalColumsCount}
-        height={(30 / 60) * task.referenced_task.durationMinutes}
+        height={(30 / 60) * task.durationMinutes}
         strokeWidth="1"
         stroke="black"
         fill="#87687590"
@@ -27,21 +27,21 @@ const CalendarTask: FunctionComponent<CalendarTaskPropsType> = ({
         x={24 + ((300 - 48) / totalColumsCount) * currentColumn}
         y={
           5 +
-          new Date(task.referenced_task.hourStart).getHours() * 30 +
-          (30 / 60) * new Date(task.referenced_task.hourStart).getMinutes()
+          new Date(task.hourStart).getHours() * 30 +
+          (30 / 60) * new Date(task.hourStart).getMinutes()
         }
         width={(300 - 48) / totalColumsCount}
-        height={(30 / 60) * task.referenced_task.durationMinutes}>
+        height={(30 / 60) * task.durationMinutes}>
         <Text
           style={{
             fontSize: 10,
             flexWrap: 'wrap-reverse',
             width: (300 - 48) / totalColumsCount,
-            height: (30 / 60) * task.referenced_task.durationMinutes,
+            height: (30 / 60) * task.durationMinutes,
             textAlign: 'center',
             padding: 2,
           }}>
-          {task.referenced_task.name}
+          {task.name}
         </Text>
       </ForeignObject>
     </G>

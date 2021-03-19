@@ -11,9 +11,9 @@ const mapStateToProps: MapStateToProps<TasksViewInputProps, TasksViewOwnProps, R
   _ownProps,
 ): TasksViewInputProps => ({
   routines: state.routines,
-  recurringTasks: state.ActiveTasks.filter(i => i.type === 'recurring'),
-  uniqueTasks: state.ActiveTasks.filter(i => i.type === 'unique'),
-  temporizerTasks: state.ActiveTasks.filter(i => i.type === 'temporizer'),
+  recurringTasks: state.activeTasks.filter(i => i.type === 'recurring'),
+  uniqueTasks: state.activeTasks.filter(i => i.type === 'unique'),
+  temporizerTasks: state.activeTasks.filter(i => i.type === 'temporizer'),
 })
 
 const mapDipatchToProps: MapDispatchToPropsFunction<TasksViewEventProps, TasksViewOwnProps> = (

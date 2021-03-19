@@ -29,15 +29,16 @@ export const DayOfTheWeekArray = Object.values(DaysOfTheWeekEnum).reduce<string[
 }, [])
 
 export type Routine = {
-  id: string
+  id: number
   name: string
   color: string
   days: DaysOfTheWeekEnum[]
-  tasks: RoutineTask[]
+  tasks: number[]
 }
 
 export type RoutineTask = {
-  routineId: string
+  id: number
+  routineId: number
   name: string
   notes: string
   hourStart: string
@@ -49,7 +50,7 @@ export type ActiveTaskType = 'routine' | 'recurring' | 'temporizer' | 'unique'
 
 export type ActiveTask = {
   type: ActiveTaskType
-  referenced_task: RoutineTask
+  referenced_task: number
   unique_name?: string
   unique_message?: string
   dateAlarm: string
@@ -61,6 +62,7 @@ export type ActiveWeek = {
   notifs_actived: boolean
   sound_actived: boolean
   sound: string | undefined
-  ActiveTasks: ActiveTask[]
+  activeTasks: ActiveTask[]
   routines: Routine[]
+  tasks: RoutineTask[]
 }

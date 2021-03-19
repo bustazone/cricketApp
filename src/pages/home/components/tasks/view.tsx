@@ -20,10 +20,14 @@ const TasksView: FunctionComponent<TasksViewProps> = props => {
           style={{ backgroundColor: 'yellow', width: 150, margin: 10 }}>
           <Text>Add</Text>
         </TouchableOpacity>
-        <View style={{ backgroundColor: 'yellow', width: 250, margin: 10 }}>
-          <Text>Name</Text>
-          <Text>Mute</Text>
-        </View>
+        {props.routines.map(routine => {
+          return (
+            <View style={{ backgroundColor: routine.color, width: 250, margin: 10 }}>
+              <Text>{routine.name}</Text>
+              <Text>Mute</Text>
+            </View>
+          )
+        })}
       </ScrollView>
       <Text>Each Time Alarms</Text>
       <ScrollView horizontal>

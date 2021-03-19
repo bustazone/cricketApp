@@ -10,7 +10,8 @@ const mapStateToProps: MapStateToProps<HomeViewInputProps, HomeViewOwnProps, Roo
   state,
   _ownProps,
 ): HomeViewInputProps => ({
-  activeTasks: state.ActiveTasks,
+  activeTasks: state.activeTasks,
+  tasks: state.tasks,
 })
 
 const mapDipatchToProps: MapDispatchToPropsFunction<HomeViewEventProps, HomeViewOwnProps> = (
