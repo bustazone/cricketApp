@@ -20,8 +20,8 @@ const mapDipatchToProps: MapDispatchToPropsFunction<TasksViewEventProps, TasksVi
   _dispatch: ThunkDispatch<any, any, any>,
   _ownProps: TasksViewOwnProps,
 ): TasksViewEventProps => ({
-  newRoutine: () => {
-    Navigate.goToRoutine()
+  goToRoutine: (routineId: number | undefined) => {
+    Navigate.goToRoutine(routineId)
   },
   newRecurringTask: () => {},
   newTemporizerTasks: () => {},

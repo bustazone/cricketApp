@@ -16,7 +16,7 @@ const initialState: RootState = {
   routines: [
     {
       id: 0,
-      color: mainColors.grey,
+      color: '#F00',
       days: [
         DaysOfTheWeekEnum.L,
         DaysOfTheWeekEnum.M,
@@ -30,7 +30,7 @@ const initialState: RootState = {
     },
     {
       id: 1,
-      color: mainColors.grey,
+      color: '#0F0',
       days: [DaysOfTheWeekEnum.L, DaysOfTheWeekEnum.M, DaysOfTheWeekEnum.X, DaysOfTheWeekEnum.V],
       name: 'Routine2',
       tasks: [2],

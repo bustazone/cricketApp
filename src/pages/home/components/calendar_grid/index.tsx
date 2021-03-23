@@ -19,7 +19,7 @@ const CalendarGrid: FunctionComponent<CalendarGridPropsType> = ({
     return getTabsOrdered()
   }, [])
   function moveCursor(pos: number) {
-    if (H / 2 < pos) {
+    if (H / 3 < pos) {
       setYPos(pos)
     }
   }

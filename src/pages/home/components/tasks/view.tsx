@@ -16,16 +16,18 @@ const TasksView: FunctionComponent<TasksViewProps> = props => {
       <Text>Routines</Text>
       <ScrollView horizontal>
         <TouchableOpacity
-          onPress={props.newRoutine}
+          onPress={() => props.goToRoutine(undefined)}
           style={{ backgroundColor: 'yellow', width: 150, margin: 10 }}>
           <Text>Add</Text>
         </TouchableOpacity>
         {props.routines.map(routine => {
           return (
-            <View style={{ backgroundColor: routine.color, width: 250, margin: 10 }}>
+            <TouchableOpacity
+              onPress={() => props.goToRoutine(routine.id)}
+              style={{ backgroundColor: routine.color, width: 250, margin: 10 }}>
               <Text>{routine.name}</Text>
               <Text>Mute</Text>
-            </View>
+            </TouchableOpacity>
           )
         })}
       </ScrollView>

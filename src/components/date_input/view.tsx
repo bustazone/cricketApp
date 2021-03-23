@@ -2,11 +2,11 @@ import React, { Component, createRef } from 'react'
 import { Keyboard, View } from 'react-native'
 import TextInput from '../text_input'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { DateInputViewProps, DateInputViewState } from './View.Types'
-import styles from './View.Styles'
+import { DateInputViewProps, DateInputViewState } from './view.types'
+import styles from './view.styles'
 import moment from 'moment'
+import { defaultFormatByMode, transformModeLocalToMode } from 'components/date_input/view.utils'
 
-const defaultDateFormat = 'YYYY-MM-DD'
 class Selector extends Component<DateInputViewProps, DateInputViewState> {
   textInputRef = createRef<TextInput>()
   constructor(props: DateInputViewProps) {
@@ -51,7 +51,9 @@ class Selector extends Component<DateInputViewProps, DateInputViewState> {
           label={this.props.label}
           value={
             this.props.value
-              ? moment(this.props.value).format(this.props.inputFormat || defaultDateFormat)
+              ? moment(this.props.value).format(
+                  this.props.inputFormat || defaultFormatByMode(this.props.mode),
+                )
               : ''
           }
           onFocus={() => {
@@ -62,6 +64,7 @@ class Selector extends Component<DateInputViewProps, DateInputViewState> {
         <DateTimePickerModal
           date={this.props.value}
           isVisible={this.state.isPickerVisible}
+          mode={transformModeLocalToMode(this.props.mode)}
           // headerTextIOS={I18n.t('components.form_components.date_input.label')}
           // confirmTextIOS={I18n.t('components.form_components.date_input.confirm')}
           // cancelTextIOS={I18n.t('components.form_components.date_input.cancel')}

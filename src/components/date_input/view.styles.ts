@@ -15,7 +15,7 @@ const styles = StyleSheet.create<Style>({
     justifyContent: 'center',
     paddingHorizontal: 40,
     paddingVertical: 64,
-    backgroundColor: getColorWithAlpha(mainColors.greyMedium, 0.4),
+    backgroundColor: getColorWithAlpha(mainColors.black, 0.4),
   },
   modalList: {
     flex: 1,

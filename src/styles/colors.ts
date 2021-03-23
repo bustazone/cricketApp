@@ -1,4 +1,10 @@
-export const mainColors: { [key: string]: string } = {
+type mainColorsType = {
+  black: string
+  grey: string
+  white: string
+}
+export const mainColors: mainColorsType = {
+  black: '#000000',
   grey: '#808080',
   white: '#FFFFFF',
 }

@@ -7,7 +7,7 @@ export type TasksViewInputProps = {
   uniqueTasks: ActiveTask[]
 }
 export type TasksViewEventProps = {
-  newRoutine: () => void
+  goToRoutine: (routineId: number | undefined) => void
   newRecurringTask: () => void
   newTemporizerTasks: () => void
   newUniqueTasks: () => void

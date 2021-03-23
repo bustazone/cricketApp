@@ -14,7 +14,6 @@ const SettingsView = () => {
       ]}>
       <Text
         onPress={() => {
-          goToRoutine('vvvv')
         }}>
         Navigate
       </Text>

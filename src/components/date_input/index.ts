@@ -1,3 +1,3 @@
-import View from './View'
+import View from './view'
 
 export default View
