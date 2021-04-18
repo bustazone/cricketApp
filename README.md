@@ -1,5 +1,5 @@
 # cricketApp (ON CONSTRUCTION)
-👀 ***All the hot stuff in DEVELOP branch *👀
+👀 **All the hot stuff in DEVELOP branch**👀
 
 An application to organize you daily tasks and routines and take advance of your time.
 
